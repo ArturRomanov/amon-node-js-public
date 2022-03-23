@@ -56,7 +56,7 @@ describe('Controller: Coin', () => {
 
     it('should tell that price updated', async () => {
       const coinCode = 'BTC';
-      const coin = await CoinController.getCoinByCode(coinCode);
+      await CoinController.getCoinByCode(coinCode);
 
       expect(CoinController.getCoinByCode(coinCode)).to.be.rejectedWith(Error, 'price_updated');
     });
