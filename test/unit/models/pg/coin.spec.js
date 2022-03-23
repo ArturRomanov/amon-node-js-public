@@ -1,3 +1,4 @@
+const { expect } = require('chai');
 const path = require('path');
 const sinon = require('sinon');
 const sequelizeMockingMocha = require('sequelize-mocking').sequelizeMockingMocha;
@@ -28,6 +29,16 @@ describe('Model:coin', () => {
     expect(coin.code).to.eq('BCH');
   });
 
+  it('Should create using createCoin', async () => {
+    const coin = await Models.Coin.createCoin({
+      name: 'Binance Coin',
+      code: 'BNB',
+    });
+
+    expect(coin.name).to.eq('Binance Coin');
+    expect(coin.code).to.eq('BNB');
+  });
+
   it('Should find by coinCode', async () => {
     const coinCode = this.coin.code;
     const coin = await Models.Coin.findByCoinCode(coinCode);
@@ -42,6 +53,6 @@ describe('Model:coin', () => {
     });
 
     const filterCoin = coin.filterKeys();
-    expect(Object.keys(filterCoin).length).to.eq(3);
+    expect(Object.keys(filterCoin).length).to.eq(2);
   });
 });

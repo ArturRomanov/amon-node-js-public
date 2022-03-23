@@ -17,6 +17,10 @@ module.exports = function (sequelize, DataTypes) {
       code: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
+      },
+      price: {
+        type: DataTypes.STRING,
       },
     },
     {
@@ -27,9 +31,13 @@ module.exports = function (sequelize, DataTypes) {
 
   Coin.prototype.filterKeys = function () {
     const obj = this.toObject();
-    const filtered = pick(obj, 'id', 'name', 'code');
+    const filtered = pick(obj, 'name', 'code', 'price');
 
     return filtered;
+  };
+
+  Coin.createCoin = function (contextData) {
+    return Coin.create(contextData);
   };
 
   Coin.findByCoinCode = function (code, tOpts = {}) {

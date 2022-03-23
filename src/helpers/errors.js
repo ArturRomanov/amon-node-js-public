@@ -88,6 +88,16 @@ const ERRORS = [
     description: 'Coin Code not found',
   },
   {
+    code: 'coin_exists',
+    status: 409,
+    description: 'Coin already exists',
+  },
+  {
+    code: 'price_updated',
+    status: 409,
+    description: 'Price already updated',
+  },
+  {
     code: 'entity_too_large',
     status: 413,
     description: 'The files you are trying to upload are too big.',

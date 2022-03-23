@@ -239,6 +239,14 @@ const Utils = {
 
     return str;
   },
+
+  updatedTimeOlderThanOneHour(updatedAt) {
+    updatedAt = moment(updatedAt);
+
+    const compareUpdate = moment().subtract(1, 'hours');
+
+    return updatedAt < compareUpdate;
+  },
 };
 
 module.exports = Utils;

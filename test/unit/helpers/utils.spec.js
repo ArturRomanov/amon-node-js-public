@@ -3,6 +3,7 @@ const sinon = require('sinon');
 const moment = require('moment');
 const sequelizeMockingMocha = require('sequelize-mocking').sequelizeMockingMocha;
 const request = require('request-promise');
+const { expect } = require('chai');
 
 const logger = require(path.join(srcDir, '/modules/logger'));
 const Utils = require(path.join(srcDir, '/helpers/utils'));
@@ -507,5 +508,10 @@ describe('Helpers: Utils', () => {
     const obj = { a: 1, child };
     child.obj = obj;
     expect(Utils.JSONStringifyCircular(obj)).to.be.eq('{\n  "a": 1,\n  "child": {}\n}');
+  });
+
+  it('Should return a Boolean value', () => {
+    expect(Utils.updatedTimeOlderThanOneHour(Date.now())).to.be.false;
+    expect(Utils.updatedTimeOlderThanOneHour(moment().subtract(5, 'hours'))).to.be.true;
   });
 });
